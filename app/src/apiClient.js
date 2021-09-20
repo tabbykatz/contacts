@@ -6,9 +6,9 @@ export const updateContact = (contact) => _update("/api/contacts", contact);
 
 const _get = async (url) => (await fetch(url)).json();
 
-const _update = async (url, body) => {
+const _put = async (url, body) => {
   const res = await fetch(url, {
-    method: "UPDATE",
+    method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(body),
   });
