@@ -16,7 +16,7 @@ const Contacts = () => {
 
   return (
     <section>
-      <ContactList {...{ contacts }} />
+      <ContactList contacts={contacts} addContact={addContact} />
       <AddContactForm {...{ addContact }} />
     </section>
   );
