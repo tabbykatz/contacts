@@ -11,6 +11,12 @@ export const addContact = ({ name, email, phone, notes, photo }) =>
     [name, email, phone, notes, photo],
   );
 
+export const updateContact = ({ name, email, phone, notes, photo, id }) =>
+  db.one(
+    "UPDATE contacts set name=$1, email=$2, phone=$3, notes=$4, photo=$5 WHERE id=$6",
+    [name, email, phone, notes, photo, id],
+  );
+
 function initDb() {
   let connection;
 

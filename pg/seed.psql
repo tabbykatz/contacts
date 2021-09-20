@@ -92,6 +92,8 @@ ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_
 COPY public.contacts (id, name, email, phone, notes, photo) FROM stdin;
 1	george song	george@example.com			https://avatars.githubusercontent.com/u/607420?v=4
 2	tabitha katz	tabitha@example.com	5109268161		https://avatars.githubusercontent.com/u/55110763?v=4
+3	zelma sedano	zelma@example.com	5108675309	flexbox queen	https://avatars.githubusercontent.com/u/55029831?v=4
+7	xiao zhong	xiao@example.com	5555555555	hi, xiao!	https://avatars.githubusercontent.com/u/11522217?v=4
 \.
 
 
@@ -112,7 +114,7 @@ COPY public.tasks (id, name) FROM stdin;
 -- Name: contacts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.contacts_id_seq', 2, true);
+SELECT pg_catalog.setval('public.contacts_id_seq', 7, true);
 
 
 --
