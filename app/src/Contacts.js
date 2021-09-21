@@ -17,7 +17,7 @@ const Contacts = () => {
   return (
     <section>
       <ContactList contacts={contacts} addContact={addContact} />
-      <AddContactForm {...{ addContact }} />
+      <Form action={addContact} contact={{}} />
     </section>
   );
 };
@@ -45,7 +45,7 @@ const ContactCard = ({ contact, loadContacts }) => {
               <p>{contact.notes}</p>
             </>
           ) : (
-            <Form updateContact={updateContact} contact={contact} />
+            <Form action={updateContact} contact={contact} />
           )}
           {isEditing ? null : (
             <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
@@ -64,7 +64,7 @@ const ContactList = ({ contacts }) => (
   </ul>
 );
 
-const Form = ({ updateContact, contact }) => {
+const Form = ({ action, contact }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -76,10 +76,11 @@ const Form = ({ updateContact, contact }) => {
       photo: { value: photo },
     } = form.elements;
 
-    console.log(name, email, phone, notes, photo);
-    updateContact({ name, email, phone, notes, photo }, contact.id);
+    action({ name, email, phone, notes, photo }, contact.id);
+    // can't i send more args than needed?
     form.reset();
   };
+
   return (
     <form {...{ onSubmit }}>
       <label>
@@ -108,50 +109,6 @@ const Form = ({ updateContact, contact }) => {
         <input name="photo" defaultValue={contact.photo ?? ""} type="url" />
       </label>
       <button>Update</button>
-    </form>
-  );
-};
-
-const AddContactForm = ({ addContact }) => {
-  const onSubmit = (event) => {
-    event.preventDefault();
-    const form = event.currentTarget;
-    const {
-      name: { value: name },
-      email: { value: email },
-      phone: { value: phone },
-      notes: { value: notes },
-      photo: { value: photo },
-    } = form.elements;
-
-    console.log(name, email, phone, notes, photo);
-    addContact({ name, email, phone, notes, photo });
-    form.reset();
-  };
-
-  return (
-    <form {...{ onSubmit }}>
-      <label>
-        Name
-        <input name="name" required />
-      </label>
-      <label>
-        Email
-        <input name="email" type="email" required />
-      </label>
-      <label>
-        Phone
-        <input name="phone" required />
-      </label>
-      <label>
-        Notes
-        <textarea name="notes" required />
-      </label>
-      <label>
-        Link to image
-        <input name="photo" type="url" required />
-      </label>
-      <button>Add</button>
     </form>
   );
 };
