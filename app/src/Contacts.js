@@ -17,7 +17,7 @@ const Contacts = () => {
   return (
     <section>
       <ContactList contacts={contacts} addContact={addContact} />
-      <Form action={addContact} contact={{}} />
+      <Form action={addContact} contact={{}} button={"Add"} />
     </section>
   );
 };
@@ -45,7 +45,7 @@ const ContactCard = ({ contact, loadContacts }) => {
               <p>{contact.notes}</p>
             </>
           ) : (
-            <Form action={updateContact} contact={contact} />
+            <Form action={updateContact} contact={contact} button={"Update"} />
           )}
           {isEditing ? null : (
             <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
@@ -64,7 +64,7 @@ const ContactList = ({ contacts }) => (
   </ul>
 );
 
-const Form = ({ action, contact }) => {
+const Form = ({ action, contact, button }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -75,7 +75,7 @@ const Form = ({ action, contact }) => {
       notes: { value: notes },
       photo: { value: photo },
     } = form.elements;
-
+    console.log(name, email, phone, notes, photo);
     action({ name, email, phone, notes, photo }, contact.id);
     // can't i send more args than needed?
     form.reset();
@@ -108,7 +108,7 @@ const Form = ({ action, contact }) => {
         Link to image
         <input name="photo" defaultValue={contact.photo ?? ""} type="url" />
       </label>
-      <button>Update</button>
+      <button>{button}</button>
     </form>
   );
 };
