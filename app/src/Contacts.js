@@ -17,7 +17,7 @@ const Contacts = () => {
   }, []);
 
   return (
-    <section className="container">
+    <section>
       <ContactList contacts={contacts} loadContacts={loadContacts} />
       {!isAdding ? (
         <button onClick={() => setIsAdding(!isAdding)}>Add a contact</button>
@@ -33,10 +33,6 @@ const Contacts = () => {
 
 const ContactCard = ({ contact, loadContacts }) => {
   const [isEditing, setIsEditing] = React.useState(false);
-
-  // React.useEffect(() => {
-  //   loadContacts();
-  // }, []);
 
   const updateContact = (contact, id) => {
     console.log(contact);
@@ -102,7 +98,6 @@ const Form = ({ action, contact, button }) => {
     } = form.elements;
     console.log(name, email, phone, notes, photo);
     action({ name, email, phone, notes, photo }, contact.id);
-    // can't i send more args than needed?
     form.reset();
   };
 

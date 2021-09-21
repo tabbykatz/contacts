@@ -1,8 +1,10 @@
 @import "~@bravobit/scss-starter/src/all.scss";
-Card {
-  background-color: white;
-  border-radius: 6px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
 }
 
 img {
@@ -10,4 +12,10 @@ img {
   border-radius: 50%;
   height: 100px;
   width: 100px;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
