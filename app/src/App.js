@@ -2,6 +2,7 @@ import * as React from "react";
 
 import { Routes, Route, Link } from "react-router-dom";
 
+import "./global.module.scss";
 import Contacts from "./Contacts";
 
 const App = () => (

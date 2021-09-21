@@ -5,10 +5,11 @@ import Card from "./ui/Card";
 
 const Contacts = () => {
   const [contacts, setContacts] = React.useState([]);
+  const [isAdding, setIsAdding] = React.useState(false);
 
   const loadContacts = async () => setContacts(await apiClient.getContacts());
   const addContact = (contact) =>
-    apiClient.addContact(contact).then(loadContacts);
+    apiClient.addContact(contact).then(loadContacts).then(setIsAdding(false));
 
   React.useEffect(() => {
     loadContacts();
@@ -17,7 +18,14 @@ const Contacts = () => {
   return (
     <section>
       <ContactList contacts={contacts} loadContacts={loadContacts} />
-      <Form action={addContact} contact={{}} button={"Add"} />
+      {!isAdding ? (
+        <button onClick={() => setIsAdding(!isAdding)}>Add a contact</button>
+      ) : (
+        <>
+          <Form action={addContact} contact={{}} button={"Add"} />
+          <button onClick={() => setIsAdding(!isAdding)}>Cancel</button>
+        </>
+      )}
     </section>
   );
 };
@@ -49,7 +57,14 @@ const ContactCard = ({ contact, loadContacts }) => {
               <p>{contact.notes}</p>
             </>
           ) : (
-            <Form action={updateContact} contact={contact} button={"Update"} />
+            <>
+              <Form
+                action={updateContact}
+                contact={contact}
+                button={"Update"}
+              />
+              <button onClick={() => setIsEditing(!isEditing)}>Cancel</button>
+            </>
           )}
           {isEditing ? null : (
             <button onClick={() => setIsEditing(!isEditing)}>Edit</button>
