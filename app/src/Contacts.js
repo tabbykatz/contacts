@@ -12,7 +12,7 @@ const Contacts = () => {
 
   React.useEffect(() => {
     loadContacts();
-  }, [loadContacts]);
+  }, []);
 
   return (
     <section>
@@ -25,9 +25,9 @@ const Contacts = () => {
 const ContactCard = ({ contact, loadContacts }) => {
   const [isEditing, setIsEditing] = React.useState(false);
 
-  React.useEffect(() => {
-    loadContacts();
-  }, []);
+  // React.useEffect(() => {
+  //   loadContacts();
+  // }, []);
 
   const updateContact = (contact, id) => {
     console.log(contact);
