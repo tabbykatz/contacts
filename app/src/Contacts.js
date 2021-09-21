@@ -56,10 +56,14 @@ const ContactCard = ({ contact, loadContacts }) => {
   );
 };
 
-const ContactList = ({ contacts }) => (
+const ContactList = ({ contacts, loadContacts }) => (
   <ul>
     {contacts.map((contact) => (
-      <ContactCard key={contact.id} contact={contact} />
+      <ContactCard
+        key={contact.id}
+        contact={contact}
+        loadContacts={loadContacts}
+      />
     ))}
   </ul>
 );
