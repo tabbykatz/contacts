@@ -22,13 +22,8 @@ img {
   width: 100px;
 }
 
-.app {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
 ul {
+  height: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;

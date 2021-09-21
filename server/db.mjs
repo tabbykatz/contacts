@@ -3,7 +3,8 @@ import pgp from "pg-promise";
 
 const db = initDb();
 
-export const getContacts = () => db.any("SELECT * FROM contacts");
+export const getContacts = () =>
+  db.any("SELECT * FROM contacts ORDER BY id ASC");
 
 export const addContact = ({ name, email, phone, notes, photo }) =>
   db.one(
