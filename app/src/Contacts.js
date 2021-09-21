@@ -12,11 +12,11 @@ const Contacts = () => {
 
   React.useEffect(() => {
     loadContacts();
-  }, []);
+  }, [loadContacts]);
 
   return (
     <section>
-      <ContactList contacts={contacts} addContact={addContact} />
+      <ContactList contacts={contacts} loadContacts={loadContacts} />
       <Form action={addContact} contact={{}} button={"Add"} />
     </section>
   );
@@ -24,6 +24,10 @@ const Contacts = () => {
 
 const ContactCard = ({ contact, loadContacts }) => {
   const [isEditing, setIsEditing] = React.useState(false);
+
+  React.useEffect(() => {
+    loadContacts();
+  }, []);
 
   const updateContact = (contact, id) => {
     console.log(contact);
