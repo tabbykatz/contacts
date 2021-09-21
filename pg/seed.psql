@@ -90,13 +90,14 @@ ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_
 --
 
 COPY public.contacts (id, name, email, phone, notes, photo) FROM stdin;
-2	tabitha katz	tabitha@example.com	5109268161		https://avatars.githubusercontent.com/u/55110763?v=4
 3	zelma sedano	zelma@example.com	5108675309	flexbox queen	https://avatars.githubusercontent.com/u/55029831?v=4
 7	xiao zhong	xiao@example.com	5555555555	hi, xiao!	https://avatars.githubusercontent.com/u/11522217?v=4
 8	malika kassen-lao	malika@example.com	4444444444	hey malika!	https://avatars.githubusercontent.com/u/71674426?v=4
-13	brandon bethancourt	brandon@example.com	7777777777		http://4.bp.blogspot.com/-S_KgBvcS0oM/TskuMuiKylI/AAAAAAAABzI/TmhyidGdzt0/s1600/l.jpg
-14	brandon bethancourt	brandon@example.com	7777777777	please work	http://4.bp.blogspot.com/-S_KgBvcS0oM/TskuMuiKylI/AAAAAAAABzI/TmhyidGdzt0/s1600/l.jpg
-1	george	george@example.com	1111111111	hello, george	https://avatars.githubusercontent.com/u/607420?v=4
+1	george song	george@example.com	1111111111	hello, george	https://avatars.githubusercontent.com/u/607420?v=4
+15	kevin clark	kevin@example.com	8888888888	has kevin opinions	https://media-exp1.licdn.com/dms/image/C4E03AQFs7rIXdEqYHQ/profile-displayphoto-shrink_800_800/0/1539179174252?e=1637798400&v=beta&t=3GpCYYG1ei2E85kjqIsKx_YMdovAyNE1KltkcRMMF3Q
+13	brandon bethancourt	brandon@example.com	7777777777	alaska in winter	http://4.bp.blogspot.com/-S_KgBvcS0oM/TskuMuiKylI/AAAAAAAABzI/TmhyidGdzt0/s1600/l.jpg
+16	sarah graywood	sarah@example.com	0000000000	happy birthday!	https://avatars.githubusercontent.com/u/81881720?v=4
+2	tabitha	tabitha@example.com	5109268161	hey i fixed it	https://avatars.githubusercontent.com/u/55110763?v=4
 \.
 
 
@@ -117,7 +118,7 @@ COPY public.tasks (id, name) FROM stdin;
 -- Name: contacts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public.contacts_id_seq', 14, true);
+SELECT pg_catalog.setval('public.contacts_id_seq', 16, true);
 
 
 --
