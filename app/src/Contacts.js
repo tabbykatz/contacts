@@ -23,7 +23,9 @@ const Contacts = () => {
         <button onClick={() => setIsAdding(!isAdding)}>Add a contact</button>
       ) : (
         <>
-          <Form action={addContact} contact={{}} button={"Add"} />
+          <div className="addContact">
+            <Form action={addContact} contact={{}} button={"Add"} />
+          </div>
           <button onClick={() => setIsAdding(!isAdding)}>Cancel</button>
         </>
       )}

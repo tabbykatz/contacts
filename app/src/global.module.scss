@@ -1,10 +1,18 @@
-@import "~@bravobit/scss-starter/src/all.scss";
+* {
+  margin: 0;
+}
 
 details > summary {
   list-style: none;
 }
 details > summary::-webkit-details-marker {
   display: none;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
 }
 
 img {
@@ -18,4 +26,15 @@ img {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.addContact {
+  position: fixed;
+  bottom: 0;
 }
