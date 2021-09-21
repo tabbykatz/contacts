@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import * as apiClient from "./apiClient";
+import "./global.module.scss";
 import Card from "./ui/Card";
 
 const Contacts = () => {
@@ -16,7 +17,7 @@ const Contacts = () => {
   }, []);
 
   return (
-    <section>
+    <section className="container">
       <ContactList contacts={contacts} loadContacts={loadContacts} />
       {!isAdding ? (
         <button onClick={() => setIsAdding(!isAdding)}>Add a contact</button>
@@ -47,10 +48,11 @@ const ContactCard = ({ contact, loadContacts }) => {
     <li>
       <Card>
         <details>
-          <summary>{contact.name}</summary>
+          <summary>
+            <img src={contact.photo} alt={contact.name} />
+          </summary>
           {!isEditing ? (
             <>
-              <img src={contact.photo} alt={contact.name} />
               <h3>{contact.name}</h3>
               <p>{contact.phone}</p>
               <p>{contact.email}</p>
