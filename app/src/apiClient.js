@@ -1,6 +1,6 @@
 export const getContacts = () => _get("/api/contacts");
 
-export const addContact = (name) => _post("/api/contacts", { name });
+export const addContact = (contact) => _post("/api/contacts", contact);
 
 export const updateContact = (contact, id) =>
   _put(`/api/contacts/${id}`, contact);
