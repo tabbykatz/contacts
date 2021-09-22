@@ -1,0 +1,41 @@
+* {
+  margin: 0;
+}
+
+details > summary {
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+li {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+img {
+  object-fit: cover;
+  border-radius: 50%;
+  height: 100px;
+  width: 100px;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.addContact {
+  display: block;
+  position: fixed;
+  bottom: 0;
+}
