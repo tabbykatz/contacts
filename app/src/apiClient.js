@@ -7,30 +7,21 @@ export const updateContact = (contact, id) =>
 
 const _get = async (url) => (await fetch(url)).json();
 
-const _put = async (url, body) => {
-  const res = await fetch(url, {
-    method: "PUT",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  let result;
-  try {
-    result = await res.json();
-  } catch {}
+const _post = _base("POST");
+const _put = _base("PUT");
 
-  return result;
-};
+function _base(method) {
+  return async (url, body) => {
+    const response = await fetch(url, {
+      method,
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    let result;
+    try {
+      result = await response.json();
+    } catch {}
 
-const _post = async (url, body) => {
-  const response = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
-  let result;
-  try {
-    result = await response.json();
-  } catch {}
-
-  return result;
-};
+    return result;
+  };
+}
