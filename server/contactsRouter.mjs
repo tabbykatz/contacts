@@ -15,7 +15,6 @@ contactsRouter.post("/", async (request, response) => {
   response.status(201).json(contact);
 });
 contactsRouter.put("/:id", async (request, response) => {
-  console.log(request.body);
   const contact = await db.updateContact(request.body, request.params.id);
   response.json(contact);
 });

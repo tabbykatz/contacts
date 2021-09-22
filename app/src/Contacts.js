@@ -18,15 +18,19 @@ const Contacts = () => {
 
   return (
     <section>
-      <ContactList contacts={contacts} loadContacts={loadContacts} />
+      <ContactList {...{ contacts, loadContacts }} />
       {!isAdding ? (
         <button onClick={() => setIsAdding(!isAdding)}>Add a contact</button>
       ) : (
         <>
           <div className="addContact">
-            <Form action={addContact} contact={{}} button={"Add"} />
+            <Form
+              action={addContact}
+              contact={{}}
+              button={"Add"}
+              cancel={() => setIsAdding(!isAdding)}
+            />
           </div>
-          <button onClick={() => setIsAdding(!isAdding)}>Cancel</button>
         </>
       )}
     </section>
@@ -37,9 +41,8 @@ const ContactCard = ({ contact, loadContacts }) => {
   const [isEditing, setIsEditing] = React.useState(false);
 
   const updateContact = (contact, id) => {
-    console.log(contact);
-    setIsEditing(!isEditing);
     apiClient.updateContact(contact, id).then(loadContacts);
+    setIsEditing(!isEditing);
   };
 
   return (
@@ -47,7 +50,13 @@ const ContactCard = ({ contact, loadContacts }) => {
       <Card>
         <details>
           <summary>
-            <img src={contact.photo} alt={contact.name} />
+            <img
+              src={
+                contact.photo ||
+                "https://sites.augsburg.edu/diversity/files/2021/07/not-pictured-circle.png"
+              }
+              alt={contact.name}
+            />
           </summary>
           {!isEditing ? (
             <>
@@ -62,8 +71,8 @@ const ContactCard = ({ contact, loadContacts }) => {
                 action={updateContact}
                 contact={contact}
                 button={"Update"}
+                cancel={() => setIsEditing(!isEditing)}
               />
-              <button onClick={() => setIsEditing(!isEditing)}>Cancel</button>
             </>
           )}
           {isEditing ? null : (
@@ -87,7 +96,7 @@ const ContactList = ({ contacts, loadContacts }) => (
   </ul>
 );
 
-const Form = ({ action, contact, button }) => {
+const Form = ({ action, contact, button, cancel }) => {
   const onSubmit = (event) => {
     event.preventDefault();
     const form = event.currentTarget;
@@ -98,7 +107,6 @@ const Form = ({ action, contact, button }) => {
       notes: { value: notes },
       photo: { value: photo },
     } = form.elements;
-    console.log(name, email, phone, notes, photo);
     action({ name, email, phone, notes, photo }, contact.id);
     form.reset();
   };
@@ -124,13 +132,14 @@ const Form = ({ action, contact, button }) => {
       </label>
       <label>
         Notes
-        <textarea name="notes" defaultValue={contact.notes ?? ""} />
+        <textarea name="notes" defaultValue={contact.notes} />
       </label>
       <label>
         Link to image
-        <input name="photo" defaultValue={contact.photo ?? ""} type="url" />
+        <input name="photo" defaultValue={contact.photo} type="url" />
       </label>
       <button>{button}</button>
+      <button onClick={cancel}>Cancel</button>
     </form>
   );
 };
